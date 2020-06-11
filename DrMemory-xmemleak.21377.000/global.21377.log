@@ -1,0 +1,65 @@
+process=21377, parent=17764
+Dr. Memory version 2.3.0 build 1 built on Feb  6 2020 01:44:52
+start time: 3676771:48:06.531 == 19:48:06.531 06/11/2020
+Recorded 17 suppression(s) from default /home/felipe/Programas/DrMemory-Linux-2.3.0-1/bin64/suppress-default.txt
+new thread #0 id=21377
+WARNING: symbol cache file has wrong version
+
+module load event: "libdrmemorylib.so" 0x00007f02d6061000-0x00007f02d61c0000 modid: 1 /home/felipe/Programas/DrMemory-Linux-2.3.0-1/bin64/release/libdrmemorylib.so
+WARNING: symbol cache file has wrong version
+
+module load event: "xmemleak" 0x00007f02e6061000-0x00007f02e6066000 modid: 2 /home/felipe/git/memleak/xmemleak
+WARNING: symbol cache file has wrong version
+
+module load event: "ld-linux-x86-64.so.2" 0x00007f02ea03c000-0x00007f02ea066000 modid: 3 /usr/lib/x86_64-linux-gnu/ld-2.28.so
+WARNING: unable to load symbols for /usr/lib/x86_64-linux-gnu/ld-2.28.so
+WARNING: symbol cache file has wrong version
+
+module load event: "libdynamorio.so" 0x00007f02ea067000-0x00007f02ea27f000 modid: 4 /home/felipe/Programas/DrMemory-Linux-2.3.0-1/dynamorio/lib64/release/libdynamorio.so
+WARNING: unable to open [vdso]
+WARNING: symbol cache file has wrong version
+
+module load event: "linux-vdso.so.1" 0x00007ffd4edfd000-0x00007ffd4edff000 modid: 5 [vdso]
+
+module load event: "libc.so.6" 0x00007f02e9afb000-0x00007f02e9cbc000 modid: 6 /usr/lib/x86_64-linux-gnu/libc-2.28.so
+WARNING: unable to load symbols for /usr/lib/x86_64-linux-gnu/libc-2.28.so
+
+Error #1: LEAK 10240 direct bytes 0x00007f0149860070-0x00007f0149862870 + 0 indirect bytes
+# 0 replace_malloc    [/drmemory_package/common/alloc_replace.c:2577] (0x00007f02d60aabc0 <libdrmemorylib.so+0x49bc0>) modid:1
+# 1 main     [/home/felipe/git/memleak/main.c:16] (0x00007f02e606216e <xmemleak+0x116e>) modid:2
+	error end
+
+Reached maximum leak report limit (-report_leak_max). No further leaks will be reported.
+
+DUPLICATE ERROR COUNTS:
+	Error #   1:   9999
+
+SUPPRESSIONS USED:
+	     8x: default i#79 (ld-linux)
+
+ERRORS FOUND:
+      0 unique,     0 total unaddressable access(es)
+      0 unique,     0 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total warning(s)
+      1 unique,  9999 total, 102389760 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      0 ignored assumed-innocuous system leak(s)
+      1 unique,     1 total,  10240 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+  433794 leak(s) beyond -report_leak_max
+Details: /home/felipe/git/memleak/./DrMemory-xmemleak.21377.000/results.txt
+
+DUPLICATE POTENTIAL ERROR COUNTS:
+
+POTENTIAL ERRORS FOUND:
+      0 unique,     0 total potential unaddressable access(es)
+      0 unique,     0 total potential uninitialized access(es)
+      0 unique,     0 total potential invalid heap argument(s)
+      0 unique,     0 total potential warning(s)
+      0 unique,     0 total,      0 byte(s) of potential leak(s)
+      0 unique,     0 total,      0 byte(s) of potential possible leak(s)
+Details: /home/felipe/git/memleak/./DrMemory-xmemleak.21377.000/potential_errors.txt
+Exiting @0:03:56.983 in thread 21377
+LOG END

@@ -1,0 +1,14 @@
+Dr. Memory version 2.3.0 build 1 built on Feb  6 2020 01:44:52
+Dr. Memory errors that are likely to be false positives, for pid 21377: "xmemleak"
+If these are all false positives and your focus is unaddressable errors, consider running with -light to skip all uninitialized reads and leaks for higher performance.
+
+DUPLICATE POTENTIAL ERROR COUNTS:
+
+POTENTIAL ERRORS FOUND:
+      0 unique,     0 total potential unaddressable access(es)
+      0 unique,     0 total potential uninitialized access(es)
+      0 unique,     0 total potential invalid heap argument(s)
+      0 unique,     0 total potential warning(s)
+      0 unique,     0 total,      0 byte(s) of potential leak(s)
+      0 unique,     0 total,      0 byte(s) of potential possible leak(s)
+Details: /home/felipe/git/memleak/./DrMemory-xmemleak.21377.000/potential_errors.txt

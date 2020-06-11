@@ -1,0 +1,14 @@
+# File for suppressing errors found in pid 21377: "xmemleak"
+
+# Suppression for Error #1
+LEAK
+name=Error #1 (update to meaningful name)
+libdrmemorylib.so!replace_malloc
+xmemleak!main
+
+## Mod+offs-style suppression for Error #1:
+LEAK
+name=Error #1 (update to meaningful name)
+<libdrmemorylib.so+0x49bc0>
+<xmemleak+0x116e>
+

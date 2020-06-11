@@ -1,0 +1,2 @@
+/usr/lib/x86_64-linux-gnu/ld-2.28.so
+/usr/lib/x86_64-linux-gnu/libc-2.28.so
