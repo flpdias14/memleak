@@ -1,3 +1,4 @@
+xmemleak
 # Prerequisites
 *.d
 
@@ -40,7 +41,7 @@
 *.dSYM/
 *.su
 *.idb
-*.pdb
+*.pdb.gitignore
 
 # Kernel Module Compile Results
 *.mod*
