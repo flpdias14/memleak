@@ -16,7 +16,7 @@ int main()
         vector = (float*) malloc(1024*SIZE);
         // printf("Malloc %d\tsizeof = %d bytes\n", ++count, allocaded_size);
         //  sleep(1);
-        usleep(10000);
+        usleep(100);
         
     }
 }
