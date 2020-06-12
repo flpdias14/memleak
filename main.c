@@ -32,35 +32,23 @@ void save_data()
 {
     FILE * fp = fopen("data.txt", "w");
     Data out;
-    printf("AAAA 1\n");
     out.id = data1->id;
-    printf("AAAA 2\n");  
     strcpy(out.content, data1->content);  
-    printf("AAAA 3\n");
 
     fwrite(&out, sizeof(Data), 1, fp);
-    printf("AAAA 4\n");
     out.id = data2->id;  
     strcpy(out.content, data2->content);  
-    printf("AAAA 5\n");
     fwrite(&out, sizeof(Data), 1, fp);
-printf("AAAA 6\n");
     out.id = data3->id;  
     strcpy(out.content, data3->content); 
-printf("AAAA 7\n");
     fwrite(&out, sizeof(Data), 1, fp);
-printf("AAAA 8\n");
     out.id = data4->id;  
     strcpy(out.content, data4->content); 
-printf("AAAA 9\n");
     fwrite(&out, sizeof(Data), 1, fp);
-printf("AAAA 10\n");
     out.id = data5->id;  
     strcpy(out.content, data5->content);  
-printf("AAAA 11\n");
     fwrite(&out, sizeof(Data), 1, fp);
 
-    printf("AAAA 12\n");
     printf("Contents to file written successfully !\n");
     
     fclose(fp);
