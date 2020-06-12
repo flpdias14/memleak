@@ -4,7 +4,7 @@
 # include <signal.h> 
 # include <string.h>
 
-# define SIZE 10
+# define SIZE 1
 
 typedef struct Data
 {
@@ -112,7 +112,6 @@ void populate()
 }
 int main(int argc, char ** argv )
 {
-    printf("Arg:%d\t%s\n", argc, argv[1]);
 
     if(argc == 2 && strcmp(argv[1], "--restore") == 0)
     {
