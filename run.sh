@@ -8,7 +8,7 @@ function log_memory
 
 function kill_process
 {
-    kill $pid_of_mem_leak
+    kill $pid_of_mem_leak > /dev/null
 }
 
 function restore_aplication
