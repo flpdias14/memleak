@@ -1,37 +1,91 @@
-==6586== Memcheck, a memory error detector
-==6586== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6586== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==6586== Command: ./xmemleak
-==6586== Parent PID: 6577
-==6586== 
-==6586== 
-==6586== Process terminating with default action of signal 15 (SIGTERM)
-==6586==    at 0x49246F2: nanosleep (nanosleep.c:28)
-==6586==    by 0x494F873: usleep (usleep.c:32)
-==6586==    by 0x10917E: main (main.c:19)
-==6586== 
-==6586== HEAP SUMMARY:
-==6586==     in use at exit: 2,209,628,160 bytes in 215,784 blocks
-==6586==   total heap usage: 215,784 allocs, 0 frees, 2,209,628,160 bytes allocated
-==6586== 
-==6586== 10,240 bytes in 1 blocks are still reachable in loss record 1 of 3
-==6586==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==6586==    by 0x10916D: main (main.c:16)
-==6586== 
-==6586== 81,920 bytes in 8 blocks are possibly lost in loss record 2 of 3
-==6586==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==6586==    by 0x10916D: main (main.c:16)
-==6586== 
-==6586== 2,209,536,000 bytes in 215,775 blocks are definitely lost in loss record 3 of 3
-==6586==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==6586==    by 0x10916D: main (main.c:16)
-==6586== 
-==6586== LEAK SUMMARY:
-==6586==    definitely lost: 2,209,536,000 bytes in 215,775 blocks
-==6586==    indirectly lost: 0 bytes in 0 blocks
-==6586==      possibly lost: 81,920 bytes in 8 blocks
-==6586==    still reachable: 10,240 bytes in 1 blocks
-==6586==         suppressed: 0 bytes in 0 blocks
-==6586== 
-==6586== For counts of detected and suppressed errors, rerun with: -v
-==6586== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==13660== Memcheck, a memory error detector
+==13660== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13660== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==13660== Command: ./xmemleak --restore
+==13660== Parent PID: 2236
+==13660== 
+==13660== Syscall param write(buf) points to uninitialised byte(s)
+==13660==    at 0x4948504: write (write.c:26)
+==13660==    by 0x48D93BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1188)
+==13660==    by 0x48D875E: new_do_write (fileops.c:456)
+==13660==    by 0x48DA508: _IO_new_do_write (fileops.c:433)
+==13660==    by 0x48DA508: _IO_do_write@@GLIBC_2.2.5 (fileops.c:430)
+==13660==    by 0x48D9D6F: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:136)
+==13660==    by 0x48CD90E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==13660==    by 0x10947B: save_data (main.c:66)
+==13660==    by 0x109615: handle_sigterm (main.c:99)
+==13660==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
+==13660==    by 0x49246F3: nanosleep (nanosleep.c:28)
+==13660==    by 0x494F873: usleep (usleep.c:32)
+==13660==    by 0x1098AA: main (main.c:162)
+==13660==  Address 0x1a519bca is 10 bytes inside a block of size 4,096 alloc'd
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x48CD71B: _IO_file_doallocate (filedoalloc.c:101)
+==13660==    by 0x48DB6FF: _IO_doallocbuf (genops.c:347)
+==13660==    by 0x48DA987: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:752)
+==13660==    by 0x48D9A8E: _IO_new_file_xsputn (fileops.c:1251)
+==13660==    by 0x48D9A8E: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1204)
+==13660==    by 0x48CEAE7: fwrite (iofwrite.c:39)
+==13660==    by 0x1092DB: save_data (main.c:41)
+==13660==    by 0x109615: handle_sigterm (main.c:99)
+==13660==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
+==13660==    by 0x49246F3: nanosleep (nanosleep.c:28)
+==13660==    by 0x494F873: usleep (usleep.c:32)
+==13660==    by 0x1098AA: main (main.c:162)
+==13660==  Uninitialised value was created by a stack allocation
+==13660==    at 0x109252: save_data (main.c:32)
+==13660== 
+==13660== 
+==13660== HEAP SUMMARY:
+==13660==     in use at exit: 361,502,840 bytes in 35,308 blocks
+==13660==   total heap usage: 35,313 allocs, 5 frees, 361,513,160 bytes allocated
+==13660== 
+==13660== 24 bytes in 1 blocks are still reachable in loss record 1 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x10920D: create_data (main.c:23)
+==13660==    by 0x1094EC: restore_data (main.c:81)
+==13660==    by 0x10974E: main (main.c:131)
+==13660== 
+==13660== 24 bytes in 1 blocks are still reachable in loss record 2 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x10920D: create_data (main.c:23)
+==13660==    by 0x109525: restore_data (main.c:83)
+==13660==    by 0x10974E: main (main.c:131)
+==13660== 
+==13660== 24 bytes in 1 blocks are still reachable in loss record 3 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x10920D: create_data (main.c:23)
+==13660==    by 0x10955E: restore_data (main.c:85)
+==13660==    by 0x10974E: main (main.c:131)
+==13660== 
+==13660== 24 bytes in 1 blocks are still reachable in loss record 4 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x10920D: create_data (main.c:23)
+==13660==    by 0x109597: restore_data (main.c:87)
+==13660==    by 0x10974E: main (main.c:131)
+==13660== 
+==13660== 24 bytes in 1 blocks are still reachable in loss record 5 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x10920D: create_data (main.c:23)
+==13660==    by 0x1095D0: restore_data (main.c:89)
+==13660==    by 0x10974E: main (main.c:131)
+==13660== 
+==13660== 51,200 bytes in 5 blocks are possibly lost in loss record 6 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x109648: leak (main.c:110)
+==13660==    by 0x1098A0: main (main.c:161)
+==13660== 
+==13660== 361,451,520 bytes in 35,298 blocks are definitely lost in loss record 7 of 7
+==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==13660==    by 0x109648: leak (main.c:110)
+==13660==    by 0x1098A0: main (main.c:161)
+==13660== 
+==13660== LEAK SUMMARY:
+==13660==    definitely lost: 361,451,520 bytes in 35,298 blocks
+==13660==    indirectly lost: 0 bytes in 0 blocks
+==13660==      possibly lost: 51,200 bytes in 5 blocks
+==13660==    still reachable: 120 bytes in 5 blocks
+==13660==         suppressed: 0 bytes in 0 blocks
+==13660== 
+==13660== For counts of detected and suppressed errors, rerun with: -v
+==13660== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
