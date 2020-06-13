@@ -1,91 +1,91 @@
-==13660== Memcheck, a memory error detector
-==13660== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==13660== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==13660== Command: ./xmemleak --restore
-==13660== Parent PID: 2236
-==13660== 
-==13660== Syscall param write(buf) points to uninitialised byte(s)
-==13660==    at 0x4948504: write (write.c:26)
-==13660==    by 0x48D93BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1188)
-==13660==    by 0x48D875E: new_do_write (fileops.c:456)
-==13660==    by 0x48DA508: _IO_new_do_write (fileops.c:433)
-==13660==    by 0x48DA508: _IO_do_write@@GLIBC_2.2.5 (fileops.c:430)
-==13660==    by 0x48D9D6F: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:136)
-==13660==    by 0x48CD90E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
-==13660==    by 0x10947B: save_data (main.c:66)
-==13660==    by 0x109615: handle_sigterm (main.c:99)
-==13660==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
-==13660==    by 0x49246F3: nanosleep (nanosleep.c:28)
-==13660==    by 0x494F873: usleep (usleep.c:32)
-==13660==    by 0x1098AA: main (main.c:162)
-==13660==  Address 0x1a519bca is 10 bytes inside a block of size 4,096 alloc'd
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x48CD71B: _IO_file_doallocate (filedoalloc.c:101)
-==13660==    by 0x48DB6FF: _IO_doallocbuf (genops.c:347)
-==13660==    by 0x48DA987: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:752)
-==13660==    by 0x48D9A8E: _IO_new_file_xsputn (fileops.c:1251)
-==13660==    by 0x48D9A8E: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1204)
-==13660==    by 0x48CEAE7: fwrite (iofwrite.c:39)
-==13660==    by 0x1092DB: save_data (main.c:41)
-==13660==    by 0x109615: handle_sigterm (main.c:99)
-==13660==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
-==13660==    by 0x49246F3: nanosleep (nanosleep.c:28)
-==13660==    by 0x494F873: usleep (usleep.c:32)
-==13660==    by 0x1098AA: main (main.c:162)
-==13660==  Uninitialised value was created by a stack allocation
-==13660==    at 0x109252: save_data (main.c:32)
-==13660== 
-==13660== 
-==13660== HEAP SUMMARY:
-==13660==     in use at exit: 361,502,840 bytes in 35,308 blocks
-==13660==   total heap usage: 35,313 allocs, 5 frees, 361,513,160 bytes allocated
-==13660== 
-==13660== 24 bytes in 1 blocks are still reachable in loss record 1 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x10920D: create_data (main.c:23)
-==13660==    by 0x1094EC: restore_data (main.c:81)
-==13660==    by 0x10974E: main (main.c:131)
-==13660== 
-==13660== 24 bytes in 1 blocks are still reachable in loss record 2 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x10920D: create_data (main.c:23)
-==13660==    by 0x109525: restore_data (main.c:83)
-==13660==    by 0x10974E: main (main.c:131)
-==13660== 
-==13660== 24 bytes in 1 blocks are still reachable in loss record 3 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x10920D: create_data (main.c:23)
-==13660==    by 0x10955E: restore_data (main.c:85)
-==13660==    by 0x10974E: main (main.c:131)
-==13660== 
-==13660== 24 bytes in 1 blocks are still reachable in loss record 4 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x10920D: create_data (main.c:23)
-==13660==    by 0x109597: restore_data (main.c:87)
-==13660==    by 0x10974E: main (main.c:131)
-==13660== 
-==13660== 24 bytes in 1 blocks are still reachable in loss record 5 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x10920D: create_data (main.c:23)
-==13660==    by 0x1095D0: restore_data (main.c:89)
-==13660==    by 0x10974E: main (main.c:131)
-==13660== 
-==13660== 51,200 bytes in 5 blocks are possibly lost in loss record 6 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x109648: leak (main.c:110)
-==13660==    by 0x1098A0: main (main.c:161)
-==13660== 
-==13660== 361,451,520 bytes in 35,298 blocks are definitely lost in loss record 7 of 7
-==13660==    at 0x483577F: malloc (vg_replace_malloc.c:299)
-==13660==    by 0x109648: leak (main.c:110)
-==13660==    by 0x1098A0: main (main.c:161)
-==13660== 
-==13660== LEAK SUMMARY:
-==13660==    definitely lost: 361,451,520 bytes in 35,298 blocks
-==13660==    indirectly lost: 0 bytes in 0 blocks
-==13660==      possibly lost: 51,200 bytes in 5 blocks
-==13660==    still reachable: 120 bytes in 5 blocks
-==13660==         suppressed: 0 bytes in 0 blocks
-==13660== 
-==13660== For counts of detected and suppressed errors, rerun with: -v
-==13660== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
+==4916== Memcheck, a memory error detector
+==4916== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==4916== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==4916== Command: ./xmemleak --restore
+==4916== Parent PID: 25489
+==4916== 
+==4916== Syscall param write(buf) points to uninitialised byte(s)
+==4916==    at 0x4948504: write (write.c:26)
+==4916==    by 0x48D93BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1188)
+==4916==    by 0x48D875E: new_do_write (fileops.c:456)
+==4916==    by 0x48DA508: _IO_new_do_write (fileops.c:433)
+==4916==    by 0x48DA508: _IO_do_write@@GLIBC_2.2.5 (fileops.c:430)
+==4916==    by 0x48D9D6F: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:136)
+==4916==    by 0x48CD90E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==4916==    by 0x1093EF: save_data (main.c:56)
+==4916==    by 0x109592: handle_sigterm (main.c:89)
+==4916==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
+==4916==    by 0x49246F3: nanosleep (nanosleep.c:28)
+==4916==    by 0x494F873: usleep (usleep.c:32)
+==4916==    by 0x109861: main (main.c:157)
+==4916==  Address 0x4e0d18a is 10 bytes inside a block of size 4,096 alloc'd
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x48CD71B: _IO_file_doallocate (filedoalloc.c:101)
+==4916==    by 0x48DB6FF: _IO_doallocbuf (genops.c:347)
+==4916==    by 0x48DA987: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:752)
+==4916==    by 0x48D9A8E: _IO_new_file_xsputn (fileops.c:1251)
+==4916==    by 0x48D9A8E: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1204)
+==4916==    by 0x48CEAE7: fwrite (iofwrite.c:39)
+==4916==    by 0x1092C7: save_data (main.c:40)
+==4916==    by 0x109592: handle_sigterm (main.c:89)
+==4916==    by 0x489583F: ??? (in /usr/lib/x86_64-linux-gnu/libc-2.28.so)
+==4916==    by 0x49246F3: nanosleep (nanosleep.c:28)
+==4916==    by 0x494F873: usleep (usleep.c:32)
+==4916==    by 0x109861: main (main.c:157)
+==4916==  Uninitialised value was created by a stack allocation
+==4916==    at 0x109262: save_data (main.c:34)
+==4916== 
+==4916== 
+==4916== HEAP SUMMARY:
+==4916==     in use at exit: 440,422,520 bytes in 4,306 blocks
+==4916==   total heap usage: 4,311 allocs, 5 frees, 440,435,912 bytes allocated
+==4916== 
+==4916== 24 bytes in 1 blocks are still reachable in loss record 1 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x10921D: create_data (main.c:25)
+==4916==    by 0x109460: restore_data (main.c:71)
+==4916==    by 0x1096E7: main (main.c:123)
+==4916== 
+==4916== 24 bytes in 1 blocks are still reachable in loss record 2 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x10921D: create_data (main.c:25)
+==4916==    by 0x109499: restore_data (main.c:73)
+==4916==    by 0x1096E7: main (main.c:123)
+==4916== 
+==4916== 24 bytes in 1 blocks are still reachable in loss record 3 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x10921D: create_data (main.c:25)
+==4916==    by 0x1094D2: restore_data (main.c:75)
+==4916==    by 0x1096E7: main (main.c:123)
+==4916== 
+==4916== 24 bytes in 1 blocks are still reachable in loss record 4 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x10921D: create_data (main.c:25)
+==4916==    by 0x10950B: restore_data (main.c:77)
+==4916==    by 0x1096E7: main (main.c:123)
+==4916== 
+==4916== 24 bytes in 1 blocks are still reachable in loss record 5 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x10921D: create_data (main.c:25)
+==4916==    by 0x109544: restore_data (main.c:79)
+==4916==    by 0x1096E7: main (main.c:123)
+==4916== 
+==4916== 716,800 bytes in 7 blocks are possibly lost in loss record 6 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x1095F9: leak (main.c:101)
+==4916==    by 0x109857: main (main.c:156)
+==4916== 
+==4916== 439,705,600 bytes in 4,294 blocks are definitely lost in loss record 7 of 7
+==4916==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4916==    by 0x1095F9: leak (main.c:101)
+==4916==    by 0x109857: main (main.c:156)
+==4916== 
+==4916== LEAK SUMMARY:
+==4916==    definitely lost: 439,705,600 bytes in 4,294 blocks
+==4916==    indirectly lost: 0 bytes in 0 blocks
+==4916==      possibly lost: 716,800 bytes in 7 blocks
+==4916==    still reachable: 120 bytes in 5 blocks
+==4916==         suppressed: 0 bytes in 0 blocks
+==4916== 
+==4916== For counts of detected and suppressed errors, rerun with: -v
+==4916== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)

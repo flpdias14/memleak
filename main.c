@@ -3,8 +3,8 @@
 # include <unistd.h>
 # include <signal.h> 
 # include <string.h>
-
-# define SIZE 1
+# include <time.h> 
+# define SIZE 100 // 1024 B*SIZE
 
 typedef struct Data
 {
@@ -17,6 +17,8 @@ Data * data2 = NULL;
 Data * data3 = NULL;
 Data * data4 = NULL;
 Data * data5 = NULL;
+
+double time_to_restore = 0.0;
 
 Data * create_data(int id, char content[] )
 {
@@ -49,7 +51,7 @@ void save_data()
     strcpy(out.content, data5->content);  
     fwrite(&out, sizeof(Data), 1, fp);
 
-    printf("Contents to file written successfully !\n");
+    //printf("Contents to file written successfully !\n");
     
     fclose(fp);
 }
@@ -65,7 +67,7 @@ int restore_data()
     }
     Data inp;
     fread(&inp, sizeof(Data),1, fp);
-    printf("");
+
     data1 = create_data(inp.id, inp.content);
     fread(&inp, sizeof(Data),1, fp);
     data2 = create_data(inp.id, inp.content);
@@ -83,10 +85,11 @@ int restore_data()
 void handle_sigterm(int sig) 
 { 
     printf("Saving data...  signal %d\n", sig); 
-    
+    clock_t t1 = clock();
     save_data();
-
-    printf("Bye...\n");
+    clock_t t2 = clock();
+    printf("#%g\n", time_to_restore);
+    printf("@%g\n", (double) (t2 - t1));
     exit(0);
 }  
 
@@ -115,6 +118,8 @@ int main(int argc, char ** argv )
 
     if(argc == 2 && strcmp(argv[1], "--restore") == 0)
     {
+        // get inicial time
+        clock_t t1 = clock();
         if(restore_data() == 1){
             sleep(2);
             populate();
@@ -130,6 +135,9 @@ int main(int argc, char ** argv )
             printf("Restored\n id:%d\tcontent:%s\n", data4->id, data4->content);
             printf("Restored\n id:%d\tcontent:%s\n", data5->id, data5->content);
         }
+
+        clock_t t2 = clock();
+        time_to_restore = t2 - t1;
     }
     else if(argc == 1)
     {
@@ -146,6 +154,6 @@ int main(int argc, char ** argv )
     while(1)
     {
         leak();
-        usleep(100);
+        usleep(100000);
     }
 }
